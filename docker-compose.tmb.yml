@@ -1,0 +1,11 @@
+# Optional overlay: mount open TestMyBrain HTML/JS for Track B.
+# Usage: docker compose -f docker-compose.yml -f docker-compose.tmb.yml up --build
+#
+# Prerequisites:
+#   git clone https://github.com/manybrainsproject/TestMyBrainCodeRepo.git vendor/TestMyBrainCodeRepo
+#   (or set TMB_HOST_PATH in .env to your clone location)
+
+services:
+  api:
+    volumes:
+      - ${TMB_HOST_PATH:-./vendor/TestMyBrainCodeRepo}:/tmb:ro

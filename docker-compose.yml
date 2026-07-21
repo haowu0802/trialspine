@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: trialspine
+      POSTGRES_PASSWORD: trialspine
+      POSTGRES_DB: trialspine
+    ports:
+      - "5432:5432"
+    volumes:
+      - trialspine_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U trialspine -d trialspine"]
+      interval: 2s
+      timeout: 5s
+      retries: 15
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+psycopg://trialspine:trialspine@db:5432/trialspine
+      TMB_REPO_PATH: /tmb
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend/app:/app/app
+      - ./tasks:/app/tasks
+
+volumes:
+  trialspine_pg:

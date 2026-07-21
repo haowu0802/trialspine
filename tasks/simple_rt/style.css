@@ -1,0 +1,97 @@
+:root {
+  --bg0: #f0f6fc;
+  --bg1: #e8f1fa;
+  --ink: #1a2b3c;
+  --muted: #5a6f82;
+  --card: #ffffff;
+  --line: #c5d8eb;
+  --accent: #2b6cb0;
+  --accent-soft: #d6e8f7;
+  --wait: #c0392b;
+  --go: #27ae60;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  background: linear-gradient(165deg, var(--bg0) 0%, #fff 42%, var(--bg1) 100%);
+  color: var(--ink);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 1.75rem 1.25rem 2.5rem; }
+header h1 {
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.02em;
+  font-family: Outfit, "Segoe UI", system-ui, sans-serif;
+  color: #163a5f;
+}
+.sub { color: var(--muted); margin: 0 0 0.75rem; }
+.sub a { color: var(--accent); font-weight: 500; text-decoration: none; }
+.sub a:hover { text-decoration: underline; }
+.note { font-size: 0.85rem; color: var(--muted); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+  box-shadow: 0 1px 2px rgba(43, 108, 176, 0.06), 0 8px 24px rgba(43, 108, 176, 0.05);
+}
+.hidden { display: none; }
+label { display: block; margin: 1rem 0; }
+input[type="number"] {
+  width: 5rem;
+  margin-left: 0.5rem;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+button, #exportLink {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+}
+button:hover, #exportLink:hover { filter: brightness(1.06); }
+#exportLink { background: #1e4a73; }
+.stage {
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.stage.wait { background: var(--wait); color: #fff; }
+.stage.go { background: var(--go); color: #fff; }
+.stage.blank { background: var(--accent-soft); color: var(--muted); }
+.progress, .hint { color: var(--muted); font-size: 0.95rem; }
+pre {
+  background: #f5f9fc;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.75rem;
+  overflow: auto;
+  font-size: 0.85rem;
+}
+kbd {
+  background: var(--accent-soft);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0 0.35rem;
+  font-size: 0.9em;
+  color: #1e4a73;
+}

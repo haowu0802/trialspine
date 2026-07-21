@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>trialspine — Simple RT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <p class="sub"><a href="/">← trialspine</a></p>
+      <h1>simple_rt</h1>
+      <p class="sub">Simple reaction time · Space or tap when the screen turns green</p>
+    </header>
+
+    <section id="panel-start" class="card">
+      <p>Press <kbd>Space</kbd> (or tap) as soon as the screen turns green. A few practice trials, then test trials.</p>
+      <label>Test trials
+        <input id="nTrials" type="number" min="5" max="30" value="10" />
+      </label>
+      <button id="btnStart" type="button">Start session</button>
+    </section>
+
+    <section id="panel-task" class="card hidden">
+      <p id="progress" class="progress"></p>
+      <div id="stage" class="stage wait">WAIT</div>
+      <p id="hint" class="hint">Wait for green, then respond.</p>
+    </section>
+
+    <section id="panel-done" class="card hidden">
+      <h2>Session complete</h2>
+      <pre id="summaryBox"></pre>
+      <p>
+        <a id="exportLink" href="#">Download CSV</a>
+      </p>
+      <button id="btnAgain" type="button">Run again</button>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

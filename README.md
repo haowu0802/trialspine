@@ -1,5 +1,7 @@
 # trialspine
 
+**Live demo:** [https://trialspine.fly.dev/](https://trialspine.fly.dev/)
+
 The name is a hint: a lightweight backbone for cognitive tasks—sessions, trial rows, summaries, and CSV export.
 
 Demo backend for browser cognitive tasks: Postgres holds sessions, trial rows, summaries, QC flags, and CSV export.

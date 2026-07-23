@@ -1,0 +1,17 @@
+.git
+.gitignore
+.env
+.env.*
+__pycache__
+*.pyc
+.venv
+venv
+vendor
+*.md
+!README.md
+.DS_Store
+.idea
+.vscode
+**/*.pdf
+**/_extracted
+**/_img_ascii

@@ -75,8 +75,9 @@
     onResponse("pointer");
   });
 
-  async function runOneTrial(trialIndex, trialType) {
-    el.progress.textContent = `${trialType} trial ${trialIndex + 1}`;
+  async function runOneTrial(storeIndex, displayIndex, displayTotal, trialType) {
+    const label = trialType === "practice" ? "Practice" : "Test";
+    el.progress.textContent = `${label} ${displayIndex + 1} of ${displayTotal}`;
     el.hint.textContent = "Wait for green…";
     el.stage.className = "stage wait";
     el.stage.textContent = "WAIT";
@@ -98,7 +99,7 @@
     await sleep(400);
 
     return {
-      trial_index: trialIndex,
+      trial_index: storeIndex,
       trial_type: trialType,
       stimulus_id: "go",
       response: result.response,
@@ -124,20 +125,19 @@
     });
     sessionId = session.id;
 
-    let idx = 0;
-    async function collectAndPost(trialType) {
-      const trial = await runOneTrial(idx++, trialType);
-      // Persist each trial
+    let storeIndex = 0;
+    async function collectAndPost(displayIndex, displayTotal, trialType) {
+      const trial = await runOneTrial(storeIndex++, displayIndex, displayTotal, trialType);
       await api(`/v1/sessions/${sessionId}/trials`, {
         method: "POST",
         body: JSON.stringify({ trials: [trial] }),
       });
     }
     for (let i = 0; i < PRACTICE; i++) {
-      await collectAndPost("practice");
+      await collectAndPost(i, PRACTICE, "practice");
     }
     for (let i = 0; i < nTest; i++) {
-      await collectAndPost("test");
+      await collectAndPost(i, nTest, "test");
     }
 
     const completed = await api(`/v1/sessions/${sessionId}/complete`, { method: "POST" });
